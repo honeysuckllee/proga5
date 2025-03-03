@@ -1,7 +1,5 @@
-show
 add
 sveta
-yes
 57
 300
 yes
@@ -14,4 +12,3 @@ yes
 43
 yes
 3
-show

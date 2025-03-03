@@ -2,6 +2,7 @@ package org.example.Control;
 
 import org.example.Control.Commands.*;
 import org.example.Model.Deque;
+import org.example.Service.TransparentScannerWrapper;
 import org.example.Service.Utilites;
 
 import java.io.File;
@@ -50,7 +51,7 @@ public class CommandManager {
      * @param scanner Объект класса `Scanner` для чтения ввода пользователя.
      * @param command Введенная пользователем команда.
      */
-    public void parseUserCommand(Scanner scanner, String command){
+    public void parseUserCommand(TransparentScannerWrapper scanner, String command){
         finalUserCommand = command.trim().split(" ", 3);
         switch (finalUserCommand[0]) {
             case "":
@@ -132,7 +133,7 @@ public class CommandManager {
                 fileName = scriptsPath + fileName;
                 try {
                     File file = new File(fileName);
-                    Scanner scannerFile = new Scanner(file);
+                    TransparentScannerWrapper scannerFile = new TransparentScannerWrapper(file, false);
                     commandInvoker.executeCommand(new ExecuteScript(scannerFile, this));
                 } catch  (FileNotFoundException e) {
                     System.err.println("Неправильный путь или формат файла.");

@@ -4,6 +4,7 @@ import org.example.Control.Command;
 import org.example.Model.Coordinates;
 import org.example.Model.Deque;
 import org.example.Model.Location;
+import org.example.Service.TransparentScannerWrapper;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -41,7 +42,7 @@ public class Add implements Command {
     /**
      * Объект `Scanner` для чтения ввода пользователя.
      */
-    private Scanner scanner;
+    private TransparentScannerWrapper scanner;
     /**
      * Коллекция `Deque`, в которую добавляется маршрут.
      */
@@ -54,7 +55,7 @@ public class Add implements Command {
      * @param deque   Коллекция `Deque`, в которую добавляется маршрут.
      * @param name    Имя маршрута (может быть передано заранее).
      */
-    public Add(Scanner scanner, Deque deque, String name){
+    public Add(TransparentScannerWrapper scanner, Deque deque, String name){
         this.scanner = scanner;
         this.deque = deque;
         this.name = name;
@@ -69,16 +70,20 @@ public class Add implements Command {
         if (name.isEmpty()){
             name = getValidName(scanner);
         }
-        System.out.println("Ввод Coordinates");
+        if (scanner.enable_out){
+        System.out.println("Ввод Coordinates");}
         coordinates = getValidCoordinates(scanner);
         creationDate = LocalDate.now();
-        System.out.println("Ввод from:");
+        if (scanner.enable_out){
+        System.out.println("Ввод from:");}
         from = getValidLocation(scanner);
-        System.out.println("Ввод to:");
+        if (scanner.enable_out){
+        System.out.println("Ввод to:");}
         to = getValidLocation(scanner);
-        System.out.println("Ввод Distance");
+        if (scanner.enable_out){
+        System.out.println("Ввод Distance");}
         distance = getValidFloatDistance(scanner);
         deque.addRoute(name, coordinates, creationDate, from, to, distance);
-
+        System.out.println("Маршрут добавлен");
     }
 }

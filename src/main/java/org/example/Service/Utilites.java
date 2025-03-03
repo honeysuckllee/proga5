@@ -9,14 +9,14 @@ import java.util.Scanner;
  * Класс вспомогательных методов.
  */
 public class Utilites {
-    private static Scanner scn = new Scanner(System.in);
+    private static TransparentScannerWrapper scn = new TransparentScannerWrapper(new Scanner(System.in), true);
 
     /**
      * Возвращает объект класса Scanner.
      *
      * @return объект Scanner.
      */
-    public static Scanner scanner() {
+    public static TransparentScannerWrapper scanner() {
         return scn;
     }
 
@@ -90,12 +90,13 @@ public class Utilites {
      * @param scanner Объект Scanner для чтения ввода пользователя.
      * @return Введенное пользователем корректное имя.
      */
-    public static String getValidName(Scanner scanner) {
+    public static String getValidName(TransparentScannerWrapper scanner) {
         String name = "";
         boolean isValid = false;
 
         while (!isValid) {
-            System.out.print("Введите name: ");
+            if (scanner.enable_out){
+            System.out.print("Введите name: ");}
             name = scanner.nextLine().trim();
 
             if (name.isEmpty()) {
@@ -116,12 +117,12 @@ public class Utilites {
      * @param promt   Приглашение для ввода.
      * @return Введенное пользователем целое число.
      */
-    public static int getValidInt(Scanner scanner, String promt) {
+    public static int getValidInt(TransparentScannerWrapper scanner, String promt) {
         int value = 0;
         boolean isValid = false;
-        System.out.print(promt);
+        if (scanner.enable_out){
+        System.out.print(promt);}
         while (!isValid) {
-
             if (scanner.hasNextInt()) {
                 value = scanner.nextInt();
                 scanner.nextLine(); // Очистка буфера после nextInt()
@@ -140,12 +141,13 @@ public class Utilites {
      * @param scanner Объект Scanner для чтения ввода пользователя.
      * @return Введенное пользователем число типа double.
      */
-    public static double getValidDouble(Scanner scanner) {
+    public static double getValidDouble(TransparentScannerWrapper scanner) {
         double value = 0.0;
         boolean isValid = false;
 
         while (!isValid) {
-            System.out.print("Введите число типа double : ");
+            if (scanner.enable_out){
+            System.out.print("Введите число типа double : ");}
 
             if (scanner.hasNextDouble()) {
                 value = scanner.nextDouble();
@@ -167,12 +169,12 @@ public class Utilites {
      * @param promt   Приглашение для ввода.
      * @return Введенное пользователем число типа float.
      */
-    public static float getValidFloat(Scanner scanner, String promt) {
+    public static float getValidFloat(TransparentScannerWrapper scanner, String promt) {
         float value = 0.0f;
         boolean isValid = false;
-        System.out.print(promt);
+        if (scanner.enable_out){
+        System.out.print(promt);}
         while (!isValid) {
-
             if (scanner.hasNextFloat()) {
                 value = scanner.nextFloat();
                 scanner.nextLine(); // Очистка буфера после nextFloat()
@@ -192,8 +194,9 @@ public class Utilites {
      * @param scanner Объект Scanner для чтения ввода пользователя.
      * @return Введенное пользователем число типа float, большее 1 или null если нажат Ввод.
      */
-    public static Float getValidFloatDistance(Scanner scanner) {
-        System.out.print("Введите ответ 'yes' если значение типа distance не равно null: ");
+    public static Float getValidFloatDistance(TransparentScannerWrapper scanner) {
+        if (scanner.enable_out){
+        System.out.print("Введите ответ 'yes' если значение типа distance не равно null: ");}
         String inputY = scanner.nextLine().trim(); // Считываем всю строку и удаляем пробелы
 
         // Если ввод пустой, возвращаем null
@@ -202,7 +205,8 @@ public class Utilites {
         }
 
         while (true) {
-            System.out.print("Введите число типа float больше 1 (или нажмите Enter для пустого значения): ");
+            if (scanner.enable_out){
+            System.out.print("Введите число типа float больше 1 (или нажмите Enter для пустого значения): ");}
             String input = scanner.nextLine().trim(); // Считываем всю строку и удаляем пробелы
 
             // Если ввод пустой, возвращаем null
@@ -233,12 +237,13 @@ public class Utilites {
      * @param scanner Объект Scanner для чтения ввода пользователя.
      * @return Введенное пользователем число типа float, большее -334.
      */
-    public static float getValidFloatCoordinates(Scanner scanner) {
+    public static float getValidFloatCoordinates(TransparentScannerWrapper scanner) {
         float value = 0.0f;
         boolean isValid = false;
 
         while (!isValid) {
-            System.out.print("Введите число типа float больше -334: ");
+            if (scanner.enable_out){
+            System.out.print("Введите число типа float больше -334: ");}
 
             if (scanner.hasNextFloat()) {
                 value = scanner.nextFloat();
@@ -263,7 +268,7 @@ public class Utilites {
      * @param scanner Объект Scanner для чтения ввода пользователя.
      * @return Объект Coordinates с введенными пользователем координатами.
      */
-    public static Coordinates getValidCoordinates(Scanner scanner) {
+    public static Coordinates getValidCoordinates(TransparentScannerWrapper scanner) {
         double x = getValidDouble(scanner);
         float y = getValidFloatCoordinates(scanner);
         return new Coordinates(x, y);
@@ -275,8 +280,9 @@ public class Utilites {
      * @param scanner Объект Scanner для чтения ввода пользователя.
      * @return Объект Location с введенными пользователем данными.
      */
-    public static Location getValidLocation(Scanner scanner) {
-        System.out.print("Введите ответ 'yes' если значение типа location не равно null: ");
+    public static Location getValidLocation(TransparentScannerWrapper scanner) {
+        if (scanner.enable_out){
+        System.out.print("Введите ответ 'yes' если значение типа location не равно null: ");}
         String input = scanner.nextLine().trim(); // Считываем всю строку и удаляем пробелы
 
         // Если ввод пустой, возвращаем null

@@ -2,6 +2,7 @@ package org.example.Control.Commands;
 
 import org.example.Control.Command;
 import org.example.Model.Deque;
+import org.example.Service.TransparentScannerWrapper;
 
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class RemoveById implements Command {
     /**
      * Объект класса `Scanner` для чтения ввода пользователя.
      */
-    private Scanner scanner;
+    private TransparentScannerWrapper scanner;
 
     /**
      * Идентификатор элемента, который необходимо удалить.
@@ -34,7 +35,7 @@ public class RemoveById implements Command {
      * @param deque Коллекция `Deque`, из которой удаляется элемент.
      * @param id Идентификатор элемента, который необходимо удалить.
      */
-    public RemoveById(Scanner scanner, Deque deque, int id) {
+    public RemoveById(TransparentScannerWrapper scanner, Deque deque, int id) {
         this.deque = deque;
         this.scanner = scanner;
         this.id = id;

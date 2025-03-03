@@ -1,8 +1,6 @@
-show
 add_if_max
 10
-sveta
-yes
+masha
 57
 300
 yes
@@ -15,4 +13,3 @@ yes
 43
 yes
 3
-show

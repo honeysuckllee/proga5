@@ -4,6 +4,7 @@ import org.example.Control.Command;
 import org.example.Model.Coordinates;
 import org.example.Model.Deque;
 import org.example.Model.Location;
+import org.example.Service.TransparentScannerWrapper;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -19,9 +20,9 @@ public class Update implements Command {
     private Float distance;
     private Deque deque;
     private int id;
-    private Scanner scanner;
+    private TransparentScannerWrapper scanner;
 
-    public Update( Scanner scanner,Deque deque, int id) {
+    public Update( TransparentScannerWrapper scanner,Deque deque, int id) {
         this.scanner = scanner;
         this.deque = deque;
         this.id = id;

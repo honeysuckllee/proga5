@@ -4,6 +4,7 @@ import org.example.Control.Command;
 import org.example.Model.Coordinates;
 import org.example.Model.Deque;
 import org.example.Model.Location;
+import org.example.Service.TransparentScannerWrapper;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -50,7 +51,7 @@ public class AddIfMax implements Command {
     /**
      * Объект `Scanner` для чтения ввода пользователя.
      */
-    private Scanner scanner;
+    private TransparentScannerWrapper scanner;
 
     /**
      * Конструктор класса `AddIfMax`.
@@ -59,7 +60,7 @@ public class AddIfMax implements Command {
      * @param deque   Коллекция `Deque`, в которую добавляется маршрут.
      * @param id      Идентификатор маршрута.
      */
-    public AddIfMax(Scanner scanner, Deque deque, int id) {
+    public AddIfMax(TransparentScannerWrapper scanner, Deque deque, int id) {
         this.deque = deque;
         this.id = id;
         this.scanner = scanner;
@@ -76,18 +77,22 @@ public class AddIfMax implements Command {
             id = getValidInt(scanner, "Введите id:");
         }
         if (id > deque.getMaxId()){
-            System.out.println("Ввод name");
             name = getValidName(scanner);
-            System.out.println("Ввод Coordinates");
+            if (scanner.enable_out){
+                System.out.println("Ввод Coordinates");}
             coordinates = getValidCoordinates(scanner);
             creationDate = LocalDate.now();
-            System.out.println("Ввод from:");
+            if (scanner.enable_out){
+                System.out.println("Ввод from:");}
             from = getValidLocation(scanner);
-            System.out.println("Ввод to:");
+            if (scanner.enable_out){
+                System.out.println("Ввод to:");}
             to = getValidLocation(scanner);
-            System.out.println("Ввод Distance");
+            if (scanner.enable_out){
+                System.out.println("Ввод Distance");}
             distance = getValidFloatDistance(scanner);
-            deque.addRoute(id, name, coordinates, creationDate, from, to, distance);
+            deque.addRoute(name, coordinates, creationDate, from, to, distance);
+            System.out.println("Маршрут добавлен");
         }
         else {
             System.out.println("Введенное значение меньше максимального id коллекции ");

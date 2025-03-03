@@ -2,6 +2,7 @@ package org.example.Control.Commands;
 
 import org.example.Control.Command;
 import org.example.Model.Deque;
+import org.example.Service.TransparentScannerWrapper;
 
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ public class FilterStartsWithName implements Command {
     /**
      * Объект класса `Scanner` для чтения ввода пользователя.
      */
-    private Scanner scanner;
+    private TransparentScannerWrapper scanner;
 
     /**
      * Коллекция `Deque`, с которой работает команда.
@@ -34,7 +35,7 @@ public class FilterStartsWithName implements Command {
      * @param deque Коллекция `Deque`, с которой работает команда.
      * @param name Имя, с которого должны начинаться элементы коллекции.
      */
-    public FilterStartsWithName(Scanner scanner, Deque deque, String name) {
+    public FilterStartsWithName(TransparentScannerWrapper scanner, Deque deque, String name) {
         this.scanner = scanner;
         this.deque = deque;
         this.name = name;

@@ -2,6 +2,7 @@ package org.example.Control.Commands;
 
 import org.example.Control.Command;
 import org.example.Control.CommandManager;
+import org.example.Service.TransparentScannerWrapper;
 
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class ExecuteScript implements Command {
     /**
      * Объект класса `Scanner` для чтения команд из файла.
      */
-    private Scanner scanner;
+    private TransparentScannerWrapper scanner;
 
     /**
      * Объект класса `CommandManager`, который управляет выполнением команд.
@@ -26,7 +27,7 @@ public class ExecuteScript implements Command {
      * @param scanner Объект класса `Scanner` для чтения команд из файла.
      * @param manager Объект класса `CommandManager`, который управляет выполнением команд.
      */
-    public ExecuteScript(Scanner scanner, CommandManager manager) {
+    public ExecuteScript(TransparentScannerWrapper scanner, CommandManager manager) {
         this.scanner = scanner;
         this.manager = manager;
     }
